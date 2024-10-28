@@ -1,0 +1,25 @@
+---
+- hosts: 
+    - vhosts
+  become: yes
+  roles:
+    # ==========================================================
+    # Upgrade is only executed when the tag 'upgrade' is used.
+    # ==========================================================
+    - role: upgrade
+      tags:
+        - upgrade
+        - never
+    
+    # ==========================================================
+    - role: common
+      tags:
+        - common
+    
+    - role: cockpit
+      tags:
+        - cockpit
+
+    - role: kvm
+      tags:
+        - kvm
